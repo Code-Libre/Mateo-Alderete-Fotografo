@@ -1,0 +1,1201 @@
+/* =========================================================
+   ESTILOS.CSS - Mateo Alderete, fotógrafo
+   
+   ÍNDICE:
+   1. Variables del sistema
+   2. Base y reinicio
+   3. Componentes globales (Marcos, Botones, Cursor)
+   4. Encabezado y Navegación
+   5. Portada (Hero)
+   6. Portafolio (Mosaico)
+   7. Sobre mí
+   8. Cómo trabajo (Proceso)
+   9. Contacto
+   10. Pie de página
+   11. Galería por tema y Visor (Lightbox)
+   12. Animaciones y Transiciones
+   13. Diseño adaptable (Responsive)
+   14. Accesibilidad (Movimiento reducido)
+   ========================================================= */
+
+
+/* =========================================================
+   1. VARIABLES DEL SISTEMA
+   ========================================================= */
+:root {
+  --noche: #0a1631;
+  --lavanda: #e7ecfc;
+  --crema: #fffbc7;
+  --marcador: #fff6a8;
+  --tinta: #0b1020;
+  --gris: #565e72;
+  --claro: #b3bcd6;
+
+  --fuente-titulo: "Outfit", "Helvetica Neue", Arial, sans-serif;
+  --fuente-texto: "DM Sans", system-ui, sans-serif;
+
+  --ancho: 1280px;
+  --margen: clamp(1rem, 3vw, 2.5rem);
+  --fila: clamp(5.5rem, 10.5vw, 9.5rem);
+}
+
+
+/* =========================================================
+   2. BASE Y REINICIO
+   ========================================================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 4rem;
+}
+
+body {
+  background: var(--noche);
+  color: var(--tinta);
+  font: 400 1.05rem/1.6 var(--fuente-texto);
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 3px solid #4f7cff;
+  outline-offset: 3px;
+}
+
+
+/* =========================================================
+   3. COMPONENTES GLOBALES
+   ========================================================= */
+/* Marco contenedor de imagen */
+.marco {
+  position: relative;
+  overflow: hidden;
+  background: #cfd6ee;
+}
+
+.marco img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.marco--fondo {
+  position: absolute;
+  inset: 0;
+}
+
+.marco--retrato {
+  aspect-ratio: 4 / 5;
+}
+
+.marco--contacto {
+  aspect-ratio: 1;
+}
+
+/* Estado sin imagen (muestra ruta faltante) */
+.marco.sin-imagen img {
+  display: none;
+}
+
+.marco.sin-imagen::after {
+  content: "Tu imagen acá: " attr(data-ruta);
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  text-align: center;
+  font-size: .85rem;
+  color: var(--gris);
+}
+
+/* Ícono de círculo reutilizable */
+.icono-circulo {
+  width: 1.1rem;
+  height: 1.1rem;
+  flex-shrink: 0;
+  transition: transform .4s;
+}
+
+/* Botón barra blanco */
+.boton-barra {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  width: min(100%, 40rem);
+  padding: .6rem .9rem .6rem 1rem;
+  background: #fff;
+  color: var(--tinta);
+  font: 400 1.3rem var(--fuente-titulo);
+  transition: transform .25s;
+}
+
+.boton-barra .icono-circulo {
+  width: 1.7rem;
+  height: 1.7rem;
+}
+
+.boton-barra:hover {
+  transform: translateY(-3px);
+}
+
+.boton-barra:hover .icono-circulo,
+.marca:hover .icono-circulo {
+  transform: rotate(90deg) scale(1.1);
+}
+
+
+
+
+
+/* =========================================================
+   4. ENCABEZADO Y NAVEGACIÓN
+   ========================================================= */
+.encabezado {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 30;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: .9rem var(--margen);
+  background: rgba(28, 46, 88, .6);
+  backdrop-filter: blur(8px);
+}
+
+.marca {
+  color: #fff;
+  font: 500 1rem/1.05 var(--fuente-titulo);
+}
+
+.menu {
+  grid-column: 2;
+  display: flex;
+  gap: 1.8rem;
+}
+
+.menu__enlace {
+  position: relative;
+  padding: .3rem 0;
+  color: #fff;
+  font: 400 1.1rem var(--fuente-titulo);
+}
+
+.menu__enlace::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: rgba(255, 255, 255, .7);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .35s ease;
+}
+
+.menu__enlace:hover::after,
+.menu__enlace.activo::after {
+  transform: scaleX(1);
+}
+
+/* Botón hamburguesa (móvil) */
+.boton-menu {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: .6rem;
+  border: 0;
+  background: none;
+}
+
+.boton-menu__linea {
+  display: block;
+  height: 2px;
+  background: #fff;
+  transition: transform .3s ease, opacity .2s ease;
+}
+
+.boton-menu[aria-expanded="true"] .boton-menu__linea:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.boton-menu[aria-expanded="true"] .boton-menu__linea:nth-child(2) {
+  opacity: 0;
+}
+
+.boton-menu[aria-expanded="true"] .boton-menu__linea:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+
+/* =========================================================
+   5. PORTADA (HERO)
+   ========================================================= */
+.portada {
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: 7rem var(--margen) 4rem;
+  text-align: center;
+  color: #fff;
+  clip-path: inset(0);
+}
+
+.portada .marco--fondo {
+  position: fixed;
+  z-index: -2;
+  background: linear-gradient(160deg, #4f6f98, #9db2d2 60%, #d3deee);
+}
+
+.portada::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: rgba(10, 22, 49, .3);
+}
+
+.portada__contenido {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.4rem;
+  width: 100%;
+}
+
+.portada__titulo {
+  font: 300 clamp(3.2rem, 11.5vw, 10rem)/.95 var(--fuente-titulo);
+  letter-spacing: -.04em;
+}
+
+.portada__texto {
+  font: 300 clamp(1.2rem, 2.4vw, 2rem) var(--fuente-titulo);
+}
+
+.boton-portada {
+  padding: .6rem 1.6rem;
+  border: 1px solid rgba(255, 255, 255, .35);
+  background: rgba(28, 46, 88, .6);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  font: 400 1.1rem var(--fuente-titulo);
+  transition: background .25s, transform .25s;
+}
+
+.boton-portada:hover {
+  background: rgba(28, 46, 88, .85);
+  transform: translateY(-3px);
+}
+
+
+/* =========================================================
+   6. PORTAFOLIO (MOSAICO)
+   ========================================================= */
+.portafolio {
+  padding: clamp(3.5rem, 7vw, 6rem) var(--margen);
+  background: var(--lavanda);
+}
+
+.mosaico {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-rows: var(--fila);
+  gap: 1rem;
+  max-width: var(--ancho);
+  margin: 0 auto;
+}
+
+.foto--1 { grid-column: 1 / span 7; grid-row: 1 / span 3; }
+.mosaico__intro { grid-column: 8 / span 5; grid-row: 1 / span 3; }
+.foto--2 { grid-column: 1 / span 4; grid-row: 4 / span 4; }
+.foto--3 { grid-column: 5 / span 4; grid-row: 4 / span 4; }
+.foto--4 { grid-column: 9 / span 4; grid-row: 4 / span 2; }
+.foto--5 { grid-column: 9 / span 4; grid-row: 6 / span 2; }
+.foto--6 { grid-column: 1 / span 5; grid-row: 8 / span 3; }
+.foto--7 { grid-column: 6 / span 7; grid-row: 8 / span 3; }
+
+.foto img {
+  transition: transform .6s;
+}
+
+.foto:hover img {
+  transform: scale(1.04);
+}
+
+.foto__titulo {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  padding: .15rem .7rem;
+  background: var(--marcador);
+  font: 400 clamp(1rem, 1.6vw, 1.35rem) var(--fuente-titulo);
+}
+
+.foto--der .foto__titulo {
+  left: auto;
+  right: 0;
+}
+
+.foto__enlace {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: grid;
+  place-items: center; /* Centra el texto vertical y horizontalmente */
+  background: rgba(10, 22, 49, 0); /* Totalmente transparente al inicio */
+  transition: background 0.3s ease;
+  cursor: pointer; /* Muestra la manito normal de enlace */
+}
+
+/* El texto "Ver más" */
+.foto__enlace::after {
+  content: "Ver más";
+  color: #fff;
+  font: 500 1.15rem var(--fuente-titulo);
+  letter-spacing: 0.05em;
+  padding: 0.5rem 1.2rem;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  background: rgba(10, 22, 49, 0.4);
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  transform: translateY(8px); /* Empieza un poquito abajo */
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Al pasar el mouse por la foto: oscurece el fondo y muestra el texto */
+.foto:hover .foto__enlace {
+  background: rgba(10, 22, 49, 0.45); /* Capa oscura sobre la imagen */
+}
+
+.foto:hover .foto__enlace::after {
+  opacity: 1;
+  transform: translateY(0); /* Sube suavemente a su posición centrada */
+}
+
+.mosaico__intro {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.mosaico__etiqueta {
+  margin-bottom: .8rem;
+  font-size: 1rem;
+}
+
+.mosaico__titulo {
+  font: 300 clamp(1.8rem, 3.4vw, 3.1rem)/1.1 var(--fuente-titulo);
+  letter-spacing: -.02em;
+}
+
+.mosaico__texto {
+  margin-top: 1rem;
+  color: var(--gris);
+  font-size: 1.05rem;
+  line-height: 1.55;
+  max-width: 32ch; /* Evita que las líneas queden demasiado largas para facilitar la lectura */
+}
+
+
+.boton-portafolio { /*-----Boton de portafolio que redirige a la seccion de contacto------*/
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  width: 100%;
+  padding: 0.85rem 1.4rem;
+  background: var(--noche);
+  color: #fff;
+  font: 400 1.15rem var(--fuente-titulo);
+  border-radius: 4px;
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.boton-portafolio .flecha {
+  font-size: 1.3rem;
+  transition: transform 0.25s ease;
+}
+
+.boton-portafolio:hover {
+  background: #172a56;
+  transform: translateY(-2px);
+}
+
+.boton-portafolio:hover .flecha {
+  transform: translateX(6px); /* La flecha avanza sutilmente hacia la derecha */
+}
+
+
+/* =========================================================
+   7. SOBRE MÍ
+   ========================================================= */
+.sobre-mi {
+  position: relative;
+  isolation: isolate;
+  padding: clamp(4rem, 8vw, 7rem) var(--margen);
+  color: #fff;
+}
+
+.sobre-mi .marco--fondo {
+  z-index: -2;
+  background: linear-gradient(160deg, #2b3f5c, #4a5a6d 60%, #6b5f52);
+}
+
+.sobre-mi::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: rgba(10, 22, 49, .5);
+}
+
+.sobre-mi__interior {
+  max-width: var(--ancho);
+  margin: 0 auto;
+}
+
+/* Layout editorial en 2 columnas */
+.sobre-mi__editorial {
+  display: grid;
+  grid-template-columns: minmax(18rem, 24rem) 1fr;
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: center;
+}
+
+/* Columna de la foto con insignia */
+.sobre-mi__foto-col {
+  position: relative;
+}
+
+.sobre-mi__foto-col .marco--retrato {
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+  border-radius: 4px;
+}
+
+.sobre-mi__insignia {
+  display: block;
+  margin-top: 0.8rem;
+  font-size: 0.9rem;
+  color: var(--claro);
+  letter-spacing: 0.05em;
+  text-align: center;
+}
+
+/* Columna de texto */
+.sobre-mi__texto-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.sobre-mi__titulo {
+  font: 300 clamp(2rem, 3.8vw, 3.2rem)/1.15 var(--fuente-titulo);
+  letter-spacing: -.02em;
+}
+
+.sobre-mi__parrafo {
+  color: #d1d8ec;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  max-width: 52ch;
+}
+
+.sobre-mi__texto-col .boton-portafolio {
+  align-self: flex-start;
+  width: auto;
+  margin-top: 0.5rem;
+}
+
+/* Bloque inferior: métricas y datos de confianza */
+.sobre-mi__datos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: clamp(3rem, 6vw, 5rem);
+  padding-top: clamp(2rem, 4vw, 3rem);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dato {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.dato__numero {
+  font: 300 clamp(2.2rem, 4vw, 3.4rem)/1 var(--fuente-titulo);
+  color: var(--crema);
+}
+
+.dato__texto {
+  color: var(--claro);
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+
+/* =========================================================
+   8. CÓMO TRABAJO (PROCESO)
+   ========================================================= */
+.proceso {
+  padding: clamp(3.5rem, 7vw, 6rem) var(--margen);
+  background: var(--crema);
+}
+
+.proceso__interior {
+  max-width: var(--ancho);
+  margin: 0 auto;
+}
+
+.proceso__frase {
+  max-width: 26em;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  font: 300 clamp(1.7rem, 3.9vw, 3.4rem)/1.12 var(--fuente-titulo);
+  letter-spacing: -.02em;
+}
+
+.pasos {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  list-style: none;
+}
+
+.paso {
+  padding-top: 1rem;
+  border-top: 2px solid var(--tinta);
+}
+
+.paso__numero {
+  display: block;
+  margin-bottom: .6rem;
+  font: 300 clamp(2.4rem, 4vw, 3.6rem)/1 var(--fuente-titulo);
+}
+
+.paso h3 {
+  margin-bottom: .4rem;
+  font: 500 1.35rem var(--fuente-titulo);
+}
+
+.paso p {
+  color: var(--gris);
+}
+
+
+/* =========================================================
+   9. CONTACTO
+   ========================================================= */
+.contacto {
+  padding: clamp(3.5rem, 7vw, 6rem) var(--margen);
+  background: var(--noche);
+  color: #fff;
+}
+
+.contacto__interior {
+  max-width: var(--ancho);
+  margin: 0 auto;
+}
+
+.contacto__titulo {
+  margin-bottom: clamp(2rem, 5vw, 4rem);
+  font: 300 clamp(3rem, 11vw, 9.5rem)/.95 var(--fuente-titulo);
+  letter-spacing: -.04em;
+}
+
+.contacto__cuadricula {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  gap: clamp(2rem, 6vw, 6rem);
+  align-items: start;
+}
+
+.contacto__pregunta {
+  margin-bottom: 1.5rem;
+  font: 300 clamp(1.5rem, 2.6vw, 2.2rem)/1.25 var(--fuente-titulo);
+}
+
+/* Formulario de contacto */
+.formulario-contacto {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.campo label {
+  font-size: 0.95rem;
+  color: var(--claro);
+  font-family: var(--fuente-titulo);
+}
+
+.campo input,
+.campo select,
+.campo textarea {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  color: #fff;
+  font: 400 1rem var(--fuente-texto);
+  transition: border-color 0.25s, background 0.25s;
+}
+
+.campo select option {
+  background: var(--noche);
+  color: #fff;
+}
+
+.campo input:focus,
+.campo select:focus,
+.campo textarea:focus {
+  outline: none;
+  border-color: #6a95ff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.campo textarea {
+  resize: vertical;
+}
+
+/* Fila de 2 campos en pantalla grande */
+.campo-fila {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.boton-enviar {
+  border: none;
+  width: 100%;
+  cursor: pointer;
+  margin-top: 0.5rem;
+}
+
+/* Enlaces secundarios (correo / instagram) */
+.contacto__alternativas {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  margin-top: 0.8rem;
+  font-size: 0.9rem;
+  color: var(--claro);
+}
+
+.contacto__alternativas a {
+  color: #fff;
+  text-decoration: underline;
+}
+
+
+
+/* =========================================================
+   PIE DE PÁGINA
+   ========================================================= */
+.pie {
+  background: #060e20; /* Tono azul noche un poco más profundo */
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--claro);
+  font-size: 0.95rem;
+}
+
+.pie__interior {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.2fr 1.5fr; /* 4 columnas balanceadas */
+  gap: clamp(2rem, 4vw, 4rem);
+  max-width: var(--ancho);
+  margin: 0 auto;
+  padding: clamp(3rem, 6vw, 5rem) var(--margen) 2.5rem;
+}
+
+.pie__columna {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.pie__marca {
+  display: inline-block;
+  margin-bottom: 0.3rem;
+}
+
+.pie__descripcion {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  max-width: 32ch;
+  color: #8c97b8;
+}
+
+.pie__subtitulo {
+  font: 500 1.1rem var(--fuente-titulo);
+  color: #fff;
+  margin-bottom: 0.2rem;
+}
+
+.pie__lista {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.pie__lista a {
+  color: var(--claro);
+  transition: color 0.2s ease;
+}
+
+.pie__lista a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+/* Créditos */
+.pie__creditos li {
+  font-size: 0.88rem;
+  line-height: 1.4;
+  color: #8c97b8;
+}
+
+.pie__creditos span {
+  color: #fff;
+  font-weight: 500;
+}
+
+/* Redes sociales */
+.pie__redes {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.pie__redes a {
+  color: #fff;
+  transition: opacity 0.2s;
+}
+
+.pie__redes a:hover {
+  opacity: 0.7;
+}
+
+/* Barra inferior */
+.pie__barra-inferior {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  max-width: var(--ancho);
+  margin: 0 auto;
+  padding: 1.5rem var(--margen);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.85rem;
+  color: #8c97b8;
+}
+
+.pie__volver {
+  color: #fff;
+  transition: transform 0.2s;
+}
+
+.pie__volver:hover {
+  transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   11. GALERÍA POR TEMA Y VISOR (LIGHTBOX)
+   ========================================================= */
+.galeria {
+  padding: 7rem var(--margen) clamp(3.5rem, 7vw, 6rem);
+  background: var(--lavanda);
+}
+
+.galeria .foto {
+  cursor: zoom-in;
+}
+
+.galeria__interior {
+  max-width: var(--ancho);
+  margin: 0 auto;
+}
+
+.galeria__volver,
+.galeria__siguiente {
+  display: inline-block;
+  border-bottom: 1px solid var(--tinta);
+  font: 400 1.1rem var(--fuente-titulo);
+}
+
+.galeria__titulo {
+  margin-top: 1.5rem;
+  font: 300 clamp(3rem, 9vw, 7.5rem)/.95 var(--fuente-titulo);
+  letter-spacing: -.04em;
+}
+
+.galeria__texto {
+  max-width: 34em;
+  margin: 1.2rem 0 clamp(2rem, 4vw, 3rem);
+  color: var(--gris);
+  font-size: 1.2rem;
+}
+
+.galeria__cuadricula {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-flow: dense;
+  grid-auto-rows: var(--fila);
+  gap: 1rem;
+}
+
+.galeria__cuadricula .foto {
+  grid-row: span 3;
+}
+
+.galeria__cuadricula .foto:nth-child(4n) {
+  grid-column: span 2;
+}
+
+.galeria__siguiente {
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+}
+
+/* Visor modal de fotos */
+.visor {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #fff;
+}
+
+.visor[open] {
+  display: grid;
+  place-items: center;
+  animation: abrir-visor .3s ease;
+}
+
+.visor::backdrop {
+  background: rgba(5, 10, 25, .92);
+  backdrop-filter: blur(6px);
+}
+
+.visor__figura {
+  display: grid;
+  justify-items: center;
+  gap: .8rem;
+  max-width: min(92vw, 1200px);
+}
+
+.visor__figura img {
+  max-width: 100%;
+  max-height: 78vh;
+  object-fit: contain;
+  opacity: 0;
+  transition: opacity .35s ease;
+}
+
+.visor__figura img.lista {
+  opacity: 1;
+}
+
+.visor figcaption {
+  font: 300 1.3rem var(--fuente-titulo);
+}
+
+.visor__cerrar,
+.visor__flecha {
+  position: absolute;
+  width: 3rem;
+  height: 3rem;
+  border: 1px solid rgba(255, 255, 255, .35);
+  background: rgba(28, 46, 88, .6);
+  color: #fff;
+  font-size: 1.8rem;
+  line-height: 1;
+  transition: background .25s;
+}
+
+.visor__cerrar:hover,
+.visor__flecha:hover {
+  background: rgba(28, 46, 88, .9);
+}
+
+.visor__cerrar {
+  top: 1rem;
+  right: 1rem;
+}
+
+.visor__flecha {
+  top: 50%;
+  translate: 0 -50%;
+}
+
+.visor__flecha--ant {
+  left: 1rem;
+}
+
+.visor__flecha--sig {
+  right: 1rem;
+}
+
+
+/* =========================================================
+   12. ANIMACIONES Y TRANSICIONES
+   ========================================================= */
+/* Portada al cargar */
+.palabra {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding: .08em 0 .12em;
+  margin: -.08em 0 -.12em;
+}
+
+.palabra > span {
+  display: inline-block;
+  animation: subir-palabra .9s cubic-bezier(.2, .8, .2, 1) backwards;
+  animation-delay: calc(var(--i) * 90ms + 200ms);
+}
+
+.entra {
+  animation: aparecer-arriba .8s ease backwards;
+  animation-delay: calc(var(--i) * 90ms + 300ms);
+}
+
+@keyframes subir-palabra {
+  from { transform: translateY(110%); }
+}
+
+@keyframes aparecer-arriba {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+}
+
+@keyframes abrir-visor {
+  from { opacity: 0; }
+}
+
+/* Scroll reveal (aparición al bajar) */
+.revelar {
+  opacity: 0;
+  transform: translateY(1.5rem);
+  transition: opacity .8s ease, transform .8s cubic-bezier(.2, .8, .2, 1);
+}
+
+.revelar.visible {
+  opacity: 1;
+  transform: none;
+}
+
+.foto.revelar {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+
+.foto.revelar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  background: var(--lavanda);
+  transform-origin: right;
+  transition: transform 1s cubic-bezier(.2, .8, .2, 1);
+  transition-delay: inherit;
+  pointer-events: none;
+}
+
+.foto.revelar.visible::before {
+  transform: scaleX(0);
+}
+
+/* Efecto magnético para botones */
+.boton-portada:hover,
+.boton-barra:hover {
+  transform: translate(var(--mx, 0px), calc(var(--my, 0px) - 3px));
+}
+
+
+/* =========================================================
+   13. DISEÑO ADAPTABLE (RESPONSIVE)
+   ========================================================= */
+@media (max-width: 900px) {
+  .boton-menu {
+    display: flex;
+  }
+
+  .encabezado {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.2rem var(--margen);
+    background: rgba(28, 46, 88, .95);
+  }
+
+  .menu.abierto {
+    display: flex;
+  }
+
+  /* Mosaico principal */
+  .mosaico {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: auto;
+    gap: .75rem;
+  }
+
+  .foto {
+    grid-column: auto;
+    grid-row: auto;
+    aspect-ratio: 4 / 5;
+  }
+
+  .foto--1,
+  .foto--6,
+  .foto--7 {
+    grid-column: 1 / -1;
+    aspect-ratio: 3 / 2;
+  }
+
+  .mosaico__intro {
+    order: -1;
+    grid-column: 1 / -1;
+    grid-row: auto;
+    gap: 1.5rem;
+  }
+
+  /* Sobre mí */
+.sobre-mi__editorial {
+  grid-template-columns: 1fr;
+  text-align: left;
+}
+
+.sobre-mi__foto-col {
+  max-width: 22rem;
+  margin: 0 auto;
+}
+
+.sobre-mi__datos {
+    grid-template-columns: 1fr; /* Uno debajo del otro en celulares pequeños */
+    gap: 1.5rem;
+  }
+
+  /* Proceso y Contacto */
+  .pasos {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .contacto__cuadricula {
+    grid-template-columns: 1fr;
+  }
+
+  /* Galería por tema */
+  .galeria__cuadricula {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: auto;
+    gap: .75rem;
+  }
+
+  .galeria__cuadricula .foto,
+  .galeria__cuadricula .foto:nth-child(4n) {
+    grid-column: auto;
+    grid-row: auto;
+  }
+  
+  .pasos {
+    grid-template-columns: 1fr;
+  }
+
+  .canal {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .campo-fila {
+    grid-template-columns: 1fr;
+  }
+
+  .pie__interior {
+    grid-template-columns: 1fr; /* En tablets y celulares se apila una columna debajo de la otra */
+  }
+
+
+}
+
+
+
+
+/* =========================================================
+   14. ACCESIBILIDAD (MOVIMIENTO REDUCIDO)
+   ========================================================= */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+
+  .revelar,
+  .foto.revelar {
+    opacity: 1;
+    transform: none;
+    clip-path: none;
+  }
+
+  .foto.revelar::before {
+    display: none;
+  }
+
+}

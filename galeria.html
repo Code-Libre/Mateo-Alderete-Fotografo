@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Galería | Mateo Alderete</title>
+  <!-- Sitio de práctica: que no aparezca en los buscadores -->
+  <meta name="robots" content="noindex">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+  <!-- Encabezado: los enlaces vuelven al index -->
+  <header class="encabezado">
+    <a class="marca" href="index.html#inicio" aria-label="Mateo Alderete, ir al inicio">
+      <span>Mateo<br>Alderete</span>
+    </a>
+
+    <button class="boton-menu" id="boton-menu" type="button" aria-expanded="false" aria-controls="menu" aria-label="Menú">
+      <span class="boton-menu__linea"></span>
+      <span class="boton-menu__linea"></span>
+      <span class="boton-menu__linea"></span>
+    </button>
+
+    <nav class="menu" id="menu" aria-label="Principal">
+      <a class="menu__enlace" href="index.html#inicio">Inicio</a>
+      <a class="menu__enlace activo" href="index.html#portafolio">Portafolio</a>
+      <a class="menu__enlace" href="index.html#sobre-mi">Sobre mí</a>
+      <a class="menu__enlace" href="index.html#como-trabajo">Cómo trabajo</a>
+      <a class="menu__enlace" href="index.html#contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Sin id a propósito: así el menú no le quita la marca a "Portafolio" -->
+    <section class="galeria">
+      <div class="galeria__interior">
+        <a class="galeria__volver" href="index.html#portafolio">Volver al portafolio</a>
+        <h1 class="galeria__titulo" id="galeria-titulo"></h1>
+        <p class="galeria__texto" id="galeria-texto"></p>
+
+        <!-- Las fotos las arma galerias.js -->
+        <div class="galeria__cuadricula" id="galeria-cuadricula"></div>
+
+        <a class="galeria__siguiente" id="galeria-siguiente" href="#"></a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Pie de página -->
+  <footer class="pie">
+    <p>© <span id="anio-actual">2026</span> Mateo Alderete.</p>
+    <p>Sitio de demostración: el nombre, los datos de contacto y los textos son ficticios. Proyecto de práctica de Brandon Ventura.</p>
+    <a href="#">Volver arriba</a>
+  </footer>
+
+  <!-- galerias.js va antes que principal.js: primero se arman las fotos -->
+  <script src="galerias.js"></script>
+  <script src="principal.js"></script>
+</body>
+</html>

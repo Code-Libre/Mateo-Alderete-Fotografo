@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mateo Alderete | Fotógrafo independiente</title>
+  <meta name="description" content="Mateo Alderete, fotógrafo independiente de viajes y personas. Sitio de demostración con datos ficticios.">
+  <!-- Sitio de práctica: que no aparezca en los buscadores -->
+  <meta name="robots" content="noindex">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+  <!-- Ícono del círculo, se reutiliza en logo y botones -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="icono-circulo" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="12" fill="currentColor"></circle>
+      <circle cx="12" cy="12" r="7" fill="#fff"></circle>
+      <circle cx="12" cy="12" r="4.5" fill="currentColor"></circle>
+    </symbol>
+  </svg>
+
+  <!-- Encabezado -->
+  <header class="encabezado">
+    <a class="marca" href="#inicio" aria-label="Mateo Alderete, ir al inicio">
+      <span>Mateo<br>Alderete</span>
+    </a>
+
+
+    <button class="boton-menu" id="boton-menu" type="button" aria-expanded="false" aria-controls="menu" aria-label="Menú">
+      <span class="boton-menu__linea"></span>
+      <span class="boton-menu__linea"></span>
+      <span class="boton-menu__linea"></span>
+    </button>
+
+
+    <nav class="menu" id="menu" aria-label="Principal">
+      <a class="menu__enlace" href="#inicio">Inicio</a>
+      <a class="menu__enlace" href="#portafolio">Portafolio</a>
+      <a class="menu__enlace" href="#sobre-mi">Sobre mí</a>
+      <a class="menu__enlace" href="#como-trabajo">Cómo trabajo</a>
+      <a class="menu__enlace" href="#contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- Inicio -->
+    <section class="portada" id="inicio">
+      <div class="marco marco--fondo"><img src="img/img-portada-inicio/Fondo-inicio.webp" alt=""></div>
+      <div class="portada__contenido">
+        <h1 class="portada__titulo">El mundo, sin filtro</h1>
+        <p class="portada__texto">Viajes y personas, más allá de la postal.</p>
+        <a class="boton-portada" href="#portafolio">Ver portafolio</a>
+      </div>
+    </section>
+
+    <!-- Portafolio: mosaico de fotos sin huecos -->
+    <section class="portafolio" id="portafolio">
+      <div class="mosaico">
+
+        <figure class="foto foto--1 foto--der marco">
+          <img src="img/img-portafolio/casamientos.webp" alt="Fotografía de casamientos">
+          <figcaption class="foto__titulo">Casamientos</figcaption>
+          <a class="foto__enlace" href="galeria.html?tema=casamientos" aria-label="Ver la galería de casamientos"></a>
+        </figure>
+      
+        <div class="mosaico__intro">
+          <div>
+            <p class="mosaico__etiqueta">Lo que fotografío</p>
+            <h2 class="mosaico__titulo">Elegí un tipo de evento y mirá todas sus fotos</h2>
+            
+            <p class="mosaico__texto">
+              No busco solo congelar una pose, sino capturar el alma y la emoción del momento. Cada historia merece ser recordada tal como se sintió.
+            </p>
+
+          </div>
+
+          <a class="boton-portafolio" href="#contacto">
+            <span>Hablemos de tu evento</span>
+            <span class="flecha" aria-hidden="true">→</span>
+          </a>
+
+        </div>
+      
+        <figure class="foto foto--2 marco">
+          <img src="img/img-portafolio/quinceaños.webp" alt="Fotografía de quinceaños" loading="lazy">
+          <figcaption class="foto__titulo">Quinceaños</figcaption>
+          <a class="foto__enlace" href="galeria.html?tema=quinceanos" aria-label="Ver la galería de quinceaños"></a>
+        </figure>
+      
+        <figure class="foto foto--3 foto--der marco">
+          <img src="img/img-portafolio/eventos-musicales.webp" alt="Fotografía de eventos musicales" loading="lazy">
+          <figcaption class="foto__titulo">Eventos musicales</figcaption>
+          <a class="foto__enlace" href="galeria.html?tema=musica" aria-label="Ver la galería de eventos musicales"></a>
+        </figure>
+      
+        <figure class="foto foto--4 marco">
+          <img src="img/img-portafolio/eventos-comidas.webp" alt="Fotografía de eventos de comida" loading="lazy">
+          <figcaption class="foto__titulo">Eventos de comida</figcaption>
+          <a class="foto__enlace" href="galeria.html?tema=comida" aria-label="Ver la galería de eventos de comida"></a>
+        </figure>
+      
+        <figure class="foto foto--5 foto--der marco">
+          <img src="img/img-portafolio/eventos-corporativos.webp" alt="Fotografía de eventos corporativos" loading="lazy">
+          <figcaption class="foto__titulo">Eventos corporativos</figcaption>
+          <a class="foto__enlace" href="galeria.html?tema=corporativos" aria-label="Ver la galería de eventos corporativos"></a>
+        </figure>
+      
+        <figure class="foto foto--6 marco">
+          <img src="img/img-portafolio/cumpleaños.webp" alt="Fotografía de cumpleaños" loading="lazy">
+          <figcaption class="foto__titulo">Cumpleaños</figcaption>
+          <a class="foto__enlace" href="galeria.html?tema=cumpleanos" aria-label="Ver la galería de cumpleaños"></a>
+        </figure>
+      
+        <figure class="foto foto--7 foto--der marco">
+          <img src="img/img-portafolio/retratos-familia.webp" alt="Fotografía de retratos y familias" loading="lazy">
+          <figcaption class="foto__titulo">Retratos y familias</figcaption>
+          <a class="foto__enlace" href="galeria.html?tema=familias" aria-label="Ver la galería de retratos y familias"></a>
+        </figure>
+      
+      </div>
+    </section>
+
+    <!-- Sobre mí -->
+    <section class="sobre-mi" id="sobre-mi">
+      <div class="marco marco--fondo"><img src="img/sobre-mi-fondo.jpg" alt="" loading="lazy"></div>
+      <div class="sobre-mi__interior">
+
+        <!-- Bloque 1: Editorial en 2 Columnas -->
+       <div class="sobre-mi__editorial">
+         
+         <!-- Columna izquierda: Tu foto personal con etiqueta -->
+         <div class="sobre-mi__foto-col">
+           <div class="marco marco--retrato">
+             <img src="img/img-sobreMI/perfil-sobremi.webp" alt="Retrato de Mateo Alderete" loading="lazy">
+           </div>
+           <span class="sobre-mi__insignia">Mateo Alderete · Detrás del lente</span>
+         </div>
+       
+         <!-- Columna derecha: Tu historia y botón -->
+         <div class="sobre-mi__texto-col">
+           <p class="mosaico__etiqueta">Sobre mí</p>
+           <h2 class="sobre-mi__titulo">La belleza está en lo espontáneo, no en lo forzado.</h2>
+           <p class="sobre-mi__parrafo">
+             Soy Mateo, fotógrafo apasionado por los viajes y las historias humanas. Mi objetivo en cada evento es pasar desapercibido para que vos y los tuyos disfruten sin la presión de una cámara encima.
+           </p>
+           <p class="sobre-mi__parrafo">
+             No armo escenas predecibles ni poses rígidas: busco los abrazos apretados, las miradas cómplices y la emoción real tal como sucede.
+           </p>
+       
+           <a class="boton-portafolio" href="#como-trabajo">
+             <span>Conocé mi forma de trabajar</span>
+             <span class="flecha" aria-hidden="true">→</span>
+           </a>
+         </div>
+       
+       </div>
+       
+       <!-- Bloque 2: Tira de Métricas y Confianza -->
+       <div class="sobre-mi__datos">
+         <div class="dato">
+           <span class="dato__numero">+6</span>
+           <span class="dato__texto">Años capturando momentos</span>
+         </div>
+         <div class="dato">
+           <span class="dato__numero">100%</span>
+           <span class="dato__texto">Luz y emociones naturales</span>
+         </div>
+         <div class="dato">
+           <span class="dato__numero">HD</span>
+           <span class="dato__texto">Galería digital en máxima calidad</span>
+         </div>
+        
+       </div>
+    
+    </section>
+
+    <!-- Cómo trabajo -->
+    <section class="proceso" id="como-trabajo">
+      <div class="proceso__interior">
+        <p class="mosaico__etiqueta">Cómo trabajo</p>
+        <h2 class="proceso__frase">Mi método es simple: estar presente. No armo escenas, espero a que ocurran. Lo que busco es captar lo que se siente, no solo lo que se ve.</h2>
+
+        <ol class="pasos">
+          <li class="paso">
+            <span class="paso__numero">1</span>
+            <h3>Charla</h3>
+            <p>Me contás qué querés contar, para qué vas a usar las fotos y en qué fecha.</p>
+          </li>
+          <li class="paso">
+            <span class="paso__numero">2</span>
+            <h3>Propuesta</h3>
+            <p>Armo un plan con lugares, tiempos y un presupuesto claro, sin letra chica.</p>
+          </li>
+          <li class="paso">
+            <span class="paso__numero">3</span>
+            <h3>Sesión</h3>
+            <p>Fotografío con calma y sin posar de más. Vos ponés el contexto, yo el ojo.</p>
+          </li>
+          <li class="paso">
+            <span class="paso__numero">4</span>
+            <h3>Entrega</h3>
+            <p>Recibís la galería editada en alta resolución y, si querés, copias impresas.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Contacto -->
+    <section class="contacto" id="contacto">
+      <div class="contacto__interior">
+        <h2 class="contacto__titulo">Creemos algo juntos</h2>
+
+        <div class="contacto__cuadricula">
+          <div class="marco marco--contacto"><img src="img/img-contacto/foto-contacto.webp" alt="Fotografía de Mateo Alderete" loading="lazy"></div>
+
+          <div>
+            <form class="formulario-contacto" id="formulario-contacto">
+              <p class="contacto__pregunta">Contame sobre tu fecha y armamos una propuesta a tu medida.</p>
+            
+              <!-- Campo: Nombre -->
+              <div class="campo">
+                <label for="nombre">Tu nombre</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Ej. Camila" required>
+              </div>
+            
+              <!-- Fila doble: Tipo de evento y Fecha -->
+              <div class="campo-fila">
+                <div class="campo">
+                  <label for="evento">Tipo de evento</label>
+                  <select id="evento" name="evento" required>
+                    <option value="" disabled selected>Seleccioná una opción</option>
+                    <option value="Casamiento">Casamiento</option>
+                    <option value="Quinceaños">Quinceaños</option>
+                    <option value="Evento musical">Evento musical</option>
+                    <option value="Evento gastronómico">Evento gastronómico</option>
+                    <option value="Corporativo">Corporativo</option>
+                    <option value="Cumpleaños">Cumpleaños</option>
+                    <option value="Retratos y familias">Retratos y familias</option>
+                    <option value="Otro">Otro proyecto</option>
+                  </select>
+                </div>
+            
+                <div class="campo">
+                  <label for="fecha">Fecha estimada</label>
+                  <input type="date" id="fecha" name="fecha">
+                </div>
+              </div>
+            
+              <!-- Campo: Mensaje opcional -->
+              <div class="campo">
+                <label for="mensaje">Detalles (lugar, horarios o ideas)</label>
+                <textarea id="mensaje" name="mensaje" rows="3" placeholder="¿Dónde se festeja? ¿Qué momentos son los más importantes?"></textarea>
+              </div>
+            
+              <!-- Botón de envío -->
+              <button type="submit" class="boton-portafolio boton-enviar">
+                <span>Enviar consulta por WhatsApp</span>
+                <span class="flecha" aria-hidden="true">→</span>
+              </button>
+            
+              <!-- Canales secundarios directos -->
+              <div class="contacto__alternativas">
+                <span>O también:</span>
+                <a href="mailto:contacto@example.com">contacto@example.com</a>
+                <span>·</span>
+                <a href="https://www.instagram.com/" target="_blank" rel="noopener">@mateoalderete.fotos</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Pie de página -->
+<footer class="pie">
+  <div class="pie__interior">
+
+    <!-- Columna 1: Marca y Redes -->
+    <div class="pie__columna">
+      <a class="marca pie__marca" href="#inicio">
+        <span>Mateo<br>Alderete</span>
+      </a>
+      <p class="pie__descripcion">Fotografía de viajes, personas y eventos. Buscando la belleza en los momentos breves y sinceros.</p>
+      
+      <div class="pie__redes">
+        <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">Instagram</a>
+        <span>·</span>
+        <a href="https://wa.me/5491100000000" target="_blank" rel="noopener" aria-label="WhatsApp">WhatsApp</a>
+        <span>·</span>
+        <a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook">Facebook</a>
+        <span>·</span>
+        <a href="https://www.youtube.com/" target="_blank" rel="noopener" aria-label="YouTube">YouTube</a>
+      </div>
+    </div>
+
+    <!-- Columna 2: Navegación rápida -->
+    <div class="pie__columna">
+      <h3 class="pie__subtitulo">Navegación</h3>
+      <ul class="pie__lista">
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#portafolio">Portafolio</a></li>
+        <li><a href="#sobre-mi">Sobre mí</a></li>
+        <li><a href="#como-trabajo">Cómo trabajo</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </div>
+
+    <!-- Columna 3: Información Legal -->
+    <div class="pie__columna">
+      <h3 class="pie__subtitulo">Legal</h3>
+      <ul class="pie__lista">
+        <li><a href="terminos.html">Términos y condiciones</a></li>
+        <li><a href="privacidad.html">Política de privacidad</a></li>
+        <li><a href="derechos.html">Derechos de autor / Copyright</a></li>
+      </ul>
+    </div>
+
+    <!-- Columna 4: Créditos y Recursos -->
+    <div class="pie__columna">
+      <h3 class="pie__subtitulo">Créditos</h3>
+      <ul class="pie__lista pie__creditos">
+        <li><span>Fotografías:</span> Magnific &amp; Pexels (banco libre)</li>
+        <li><span>Tipografías:</span> Outfit &amp; DM Sans (Google Fonts)</li>
+        <li><span>Íconos:</span> SVG personalizados</li>
+        <li><span>Desarrollo:</span> Brandon Ventura</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- Barra inferior -->
+  <div class="pie__barra-inferior">
+    <p>© <span id="anio-actual">2026</span> Mateo Alderete. Todos los derechos reservados.</p>
+    <a class="pie__volver" href="#inicio">Volver arriba ↑</a>
+  </div>
+</footer>
+
+  <script src="principal.js"></script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+FOTOS QUE VAN EN ESTA CARPETA (nombres exactos, en minúscula, formato .jpg)
+Si todavía falta alguna, el sitio muestra un recuadro con la ruta que espera.
+Tamaños orientativos: el recorte es automático. Comprimí cada foto a menos de 400 KB.
+Usá fotos propias o de bancos de licencia libre (Unsplash, Pexels). No uses fotos de Google.
+
+portada.jpg          1920x1080  horizontal, paisaje; el texto va centrado encima
+foto-1.jpg           1800x1200  horizontal 3:2   (título: Pulso nocturno)
+foto-2.jpg           1200x1800  vertical 2:3     (título: Arenas rojas)
+foto-3.jpg           1200x1800  vertical 2:3     (título: Eco de montaña)
+foto-4.jpg           1600x1200  horizontal 4:3   (título: Hora azul)
+foto-5.jpg           1600x1200  horizontal 4:3   (título: Camino largo)
+foto-6.jpg           1500x1400  casi cuadrada    (título: Gente de paso)
+foto-7.jpg           1800x1200  horizontal 3:2   (título: Orilla)
+sobre-mi-fondo.jpg   1920x1080  horizontal, paisaje oscuro o de poco contraste
+retrato.jpg          1000x1250  vertical 4:5
+contacto.jpg         1200x1200  cuadrada
+
+Los títulos y los textos alternativos están en index.html: cambialos para que coincidan con tus fotos.
+Podés borrar este archivo antes de publicar.
